@@ -1,0 +1,12 @@
+
+# Ignorar o arquivo .env que pode conter chaves de API
+.env
+
+# Ignorar arquivos de configuração específicos
+config/stripe_keys.js
+
+# Outros arquivos temporários ou sensíveis
+*.log
+node_modules/
+
+
