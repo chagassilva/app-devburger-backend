@@ -7,7 +7,7 @@ import cors from 'cors';;
 import './database';
 
 const corsOptions = {
-  origin: 'https://app-devburger-frontend.vercel.app/', // Permite requisições de qualquer origem
+  origin: 'https://app-devburger-frontend.vercel.app', // Permite requisições de qualquer origem
   credentials: true, // Permite cookies e credenciais
 };
 
