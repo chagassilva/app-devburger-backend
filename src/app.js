@@ -22,11 +22,7 @@ class App {
 
     middlewares() {
 
-       this.app.use((req, res, next) => {
-    console.log('REQ:', req.method, req.url, req.headers.origin);
-    next();
-  });
-
+     
         this.app.use(cors(corsOptions));
         this.app.options('*', cors(corsOptions));
 
