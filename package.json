@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "migrate": "sequelize db:migrate"
   },
   "keywords": [],
   "author": {
