@@ -4,7 +4,7 @@
 module.exports = {
     
     dialect: 'postgres',
-    url: 'postgresql://postgres:CZKkbzaJRRaBPjpJnulLbrxIThDhFpkx@postgres.railway.internal:5432/railway',
+    url: 'postgresql://postgres:CZKkbzaJRRaBPjpJnulLbrxIThDhFpkx@maglev.proxy.rlwy.net:59335/railway',
 
     define: {
         timestamps: true,

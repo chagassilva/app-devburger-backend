@@ -16,7 +16,7 @@ class Database {
   // Relacionamento entre as tabelas
 
   init() {
-    this.connection = new Sequelize('postgresql://postgres:CZKkbzaJRRaBPjpJnulLbrxIThDhFpkx@postgres.railway.internal:5432/railway');
+    this.connection = new Sequelize('postgresql://postgres:CZKkbzaJRRaBPjpJnulLbrxIThDhFpkx@maglev.proxy.rlwy.net:59335/railway');
     models.map(model => model.init(this.connection)).map(
       model => model.associate && model.associate(this.connection.models)
     );
