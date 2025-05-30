@@ -14,7 +14,8 @@ const corsOptions = {
 
 class App {
   constructor() {
-    this.app = express();   
+    this.app = express();
+    this.app.use(cors(corsOptions));
     this.middlewares();
     this.routes();
   }
@@ -22,9 +23,7 @@ class App {
 
     middlewares() {
 
-     
-        this.app.use(cors(corsOptions));
-        this.app.options('*', cors(corsOptions));
+        
 
         this.app.use(express.json());
         this.app.use('/product-file', express.static(resolve(__dirname, '..','uploads')));
