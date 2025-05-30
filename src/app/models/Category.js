@@ -18,7 +18,6 @@ class categories extends Model {
 
       {
         sequelize,
-        modelName: 'Category',
         tableName: 'categories', // ou 'Categories', dependendo da migration
         underscored: true, // <-- isso faz o Sequelize mapear created_at e updated_at
       }
