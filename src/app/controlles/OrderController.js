@@ -91,7 +91,11 @@ return newProducts;
 
 const createOrder = await Order.create(order);
 
+// IA
+console.log(JSON.stringify(createOrder, null, 2));
+
 return res.status(201).json(createOrder);
+
 
 // erro aqui
 
@@ -101,7 +105,12 @@ return res.status(201).json(createOrder);
 
   const orders = await Order.find();
 
-  return res.json(orders)
+  // IA
+  if (!orders || orders.length === 0) {
+    return res.status(404).json({ message: 'Nenhum pedido encontrado' });
+  }
+
+  return res.status(200).json(orders);
 
 }
 
