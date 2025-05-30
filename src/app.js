@@ -9,8 +9,6 @@ import './database';
 const corsOptions = {
   origin: 'https://app-devburger-frontend.vercel.app/', // Permite requisições de qualquer origem
   credentials: true, // Permite cookies e credenciais
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-  allowedHeaders: 'Content-Type, Authorization', // Cabeçalhos permitidos
 };
 
 
