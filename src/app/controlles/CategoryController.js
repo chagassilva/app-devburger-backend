@@ -21,6 +21,11 @@ class CategoryController {
         }
 
         const { name } = req.body;
+
+          if (!req.file) {
+    return res.status(400).json({ error: 'Arquivo da categoria (imagem) é obrigatório.' });
+  }
+
         const {filename: path} = req.file
 
         const {admin: IsAdmin} = await User.findByPk(req.userId)
