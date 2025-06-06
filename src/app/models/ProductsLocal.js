@@ -8,10 +8,11 @@ class Product extends Model {
         price: Sequelize.INTEGER,
         path: Sequelize.STRING,
         offer: Sequelize.BOOLEAN,
+        description: Sequelize.STRING,
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `https://app-devburger-backend-production.up.railway.app/category-file/${this.path}`;
+            return `http://localhost:3001/category-file/${this.path}`;
           },
         },
       },
