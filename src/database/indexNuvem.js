@@ -31,9 +31,11 @@ class Database {
   // Conexão com o MongoDB, Requer a instalação do mongoose
 
    mongo() {
-  this.mongoConnection = mongoose.connect("mongodb://mongo:mEIhPbBfOzIcqdoMNLZxcnfeUMQipgzv@centerbeam.proxy.rlwy.net:32301");
-}
-
+    this.mongoConnection = mongoose.connect("mongodb://mongo:mEIhPbBfOzIcqdoMNLZxcnfeUMQipgzv@centerbeam.proxy.rlwy.net:32301", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  }
   
   // Conexão com o MongoDB, Requer a instalação do mongoose
 
