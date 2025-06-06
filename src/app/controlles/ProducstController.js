@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Products from '../models/Products';
 import Category from '../models/Category';
 import User from '../models/User';
+import { del } from 'httpie';
 
 class ProductsController {
     async store(req, res) {
@@ -12,6 +13,7 @@ class ProductsController {
             price: Yup.number().required(),
             category_id: Yup.number().required(),
             offer: Yup.boolean(),
+            description: Yup.string().required(),
         });
     
 
@@ -35,7 +37,7 @@ const {admin: IsAdmin} = await User.findByPk(req.userId)
 
 
 const { filename: path } = req.file;
-const { name,  price, category_id, offer } = req.body;
+const { name,  price, category_id, offer, description } = req.body;
 
 //const newPrice = Number(price);
 
@@ -46,6 +48,7 @@ const product = await Products.create({
     category_id,
     path,
     offer,
+    description
 })
 
   return res.status(201).json(product);
@@ -59,6 +62,7 @@ async update(req, res) {
       price: Yup.number(),
       category_id: Yup.number(),
       offer: Yup.boolean(),
+      description: Yup.string(),
   });
 
 
@@ -89,12 +93,15 @@ if(!findproduct) {
     return res.status(400).json({ error: 'Product not found' });
 }
 
+
 let path;
 if(req.file) {
     path = req.file.filename;
 }
 
-const { name,  price, category_id, offer } = req.body;
+
+
+const { name,  price, category_id, offer, description } = req.body;
 
 //const newPrice = Number(price);
 
@@ -105,13 +112,14 @@ price,
 category_id,
 path,
 offer,
+description
 },
 {
     where: { id }
 }
 )
 
-return res.status(200).json();
+return res.status(200).json("Product updated successfully");
 
 }
 

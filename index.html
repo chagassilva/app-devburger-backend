@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Favoritos</title>
+</head>
+<body>
+  <h1>Teste de Favoritos</h1>
+
+  <button onclick="addToFavorites(1)">Favoritar Produto 1</button>
+  <button onclick="removeFromFavorites(1)">Remover Produto 1 dos Favoritos</button>
+  <button onclick="getFavorites()">Listar Favoritos</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    const API_URL = 'http://localhost:3001'; // Altere se seu backend estiver rodando em outra porta
+    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3MDRkNGI0LWIwZjgtNGY2Ni1iMGQxLTdjNjVlMmQ3NTFjYiIsIm5hbWUiOiJjaGFnYXNzaWx2YSIsImlhdCI6MTc0OTE0NTkzOSwiZXhwIjoxNzQ5NTc3OTM5fQ.lNBw-4mHPJ5C1o08BQdBNFoXIoQwuNjHACYQpSXsrQQ'; // Substitua pelo token JWT válido do usuário logado
+
+    async function addToFavorites(productId) {
+      const response = await fetch(`${API_URL}/favorites`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        body: JSON.stringify({ product_id: productId })
+      });
+
+      const data = await response.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function removeFromFavorites(productId) {
+      const response = await fetch(`${API_URL}/favorites/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        }
+      });
+
+      const data = await response.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function getFavorites() {
+      const response = await fetch(`${API_URL}/favorites`, {
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        }
+      });
+
+      const data = await response.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
+
+

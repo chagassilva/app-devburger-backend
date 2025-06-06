@@ -6,25 +6,18 @@ import cors from 'cors';;
 
 import './database';
 
-const corsOptions = {
-  origin: 'https://app-devburger-frontend.vercel.app', // Permite requisições de qualquer origem
-  credentials: true, // Permite cookies e credenciais
-};
-
+require('dotenv').config(); // Isso vai carregar as variáveis de ambiente do arquivo .env
 
 class App {
   constructor() {
     this.app = express();
-    this.app.use(cors(corsOptions));
+    this.app.use(cors());
     this.middlewares();
     this.routes();
   }
 
 
     middlewares() {
-
-        
-
         this.app.use(express.json());
         this.app.use('/product-file', express.static(resolve(__dirname, '..','uploads')));
         this.app.use('/category-file', express.static(resolve(__dirname, '..','uploads')));

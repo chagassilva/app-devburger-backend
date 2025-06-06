@@ -8,32 +8,38 @@ class Product extends Model {
         price: Sequelize.INTEGER,
         path: Sequelize.STRING,
         offer: Sequelize.BOOLEAN,
+        description: Sequelize.STRING,
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `https://app-devburger-backend-production.up.railway.app/category-file/${this.path}`;
+            return `http://localhost:3001/category-file/${this.path}`;
           },
         },
       },
       {
         sequelize,
-        tableName: 'Products', // ou 'Categories', dependendo da migration
-        underscored: true, // <-- isso faz o Sequelize mapear created_at e updated_at
+        tableName: 'Products',
+        underscored: true,
       }
     );
 
     return this;
   }
 
-  // Relacionamento com a tabela de categorias
   static associate(models) {
+    // Relação com categoria
     this.belongsTo(models.categories, {
-      foreignKey: 'category_id', 
+      foreignKey: 'category_id',
       as: 'category',
     });
-  }
- // Relacionamento com a tabela de categorias
 
+    // Relação com favoritos
+    this.belongsToMany(models.User, {
+      through: models.Favorite,
+      foreignKey: 'productId',
+      as: 'favoritedBy',
+    });
+  }
 }
 
 export default Product;
