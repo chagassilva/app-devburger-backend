@@ -1,16 +1,27 @@
-
 import express from 'express';
 import routes from './routes';
 import { resolve } from 'node:path';
-import cors from 'cors';;
+import cors from 'cors';
 
 import './database';
 
-const corsOptions = {
-  origin: 'https://app-devburger-frontend.vercel.app', // Permite requisições de qualquer origem
-  credentials: true, // Permite cookies e credenciais
-};
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://app-devburger-frontend.vercel.app',
+];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // permite ferramentas internas (Postman, etc.)
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+};
 
 class App {
   constructor() {
@@ -20,21 +31,15 @@ class App {
     this.routes();
   }
 
+  middlewares() {
+    this.app.use(express.json());
+    this.app.use('/product-file', express.static(resolve(__dirname, '..', 'uploads')));
+    this.app.use('/category-file', express.static(resolve(__dirname, '..', 'uploads')));
+  }
 
-    middlewares() {
-
-        
-
-        this.app.use(express.json());
-        this.app.use('/product-file', express.static(resolve(__dirname, '..','uploads')));
-        this.app.use('/category-file', express.static(resolve(__dirname, '..','uploads')));
-    }
-
-    routes() {
-        this.app.use(routes);
-    }
-
-
+  routes() {
+    this.app.use(routes);
+  }
 }
 
 export default new App().app;
