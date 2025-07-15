@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     
-     await queryInterface.addColumn('Categories', "path",{
+     await queryInterface.addColumn('categories', "path",{
 
 
       type: Sequelize.STRING,
@@ -15,7 +15,7 @@ module.exports = {
 
   async down (queryInterface) {
     
-     await queryInterface.dropTable('Categories', "path");
+     await queryInterface.dropTable('categories', "path");
      
   }
 };

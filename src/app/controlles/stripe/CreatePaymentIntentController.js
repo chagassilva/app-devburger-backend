@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import * as Yup from "yup";
-const stripe = require("stripe")('sk_test_51RHbMhQRFA5bTw4XQeuFsn3M70AbuRrkUEbBg9upBgUNPijaVBxxDXXgkydzkDs74k7xp2sf2omKBu23xluOHPPc00wHyqmuDa');
+//const stripe = require("stripe")('sk_test_51RHbMhQRFA5bTw4XQeuFsn3M70AbuRrkUEbBg9upBgUNPijaVBxxDXXgkydzkDs74k7xp2sf2omKBu23xluOHPPc00wHyqmuDa');
+const stripe = require("stripe")("sk_test_51RHbMhQRFA5bTw4XtSlLdOrPjOyQYngSSQF0FBIKSIK9ZIDWav1F5SbspqWw5W3VrTii3BqFkNTPAIqDfCB7gTFV00jQI229l4");
 
 
 
@@ -10,6 +11,7 @@ const calculateOrderAmount = (items) => {
     }, 0);
 
     return total; // Stripe usa centavos
+     //return Math.round(total * 100);
 };
 
 

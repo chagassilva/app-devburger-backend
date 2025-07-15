@@ -16,7 +16,7 @@ class Database {
   // Relacionamento entre as tabelas
 
   init() {
-    this.connection = new Sequelize('postgresql://postgres:CZKkbzaJRRaBPjpJnulLbrxIThDhFpkx@maglev.proxy.rlwy.net:59335/railway');
+    this.connection = new Sequelize(configDatabase);
     models.map(model => model.init(this.connection)).map(
       model => model.associate && model.associate(this.connection.models)
     );
@@ -28,7 +28,7 @@ class Database {
   // Conexão com o MongoDB, Requer a instalação do mongoose
 
    mongo() {
-    this.mongoConnection = mongoose.connect("mongodb://mongo:mEIhPbBfOzIcqdoMNLZxcnfeUMQipgzv@centerbeam.proxy.rlwy.net:32301", {
+    this.mongoConnection = mongoose.connect("mongodb://localhost:27017/devburger", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

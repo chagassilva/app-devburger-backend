@@ -33,6 +33,8 @@ routes.use(authmiddleware);
    routes.post('/products', upload.single('file'),  ProducstController.store)
    routes.get('/products', ProducstController.index)
    routes.put('/products/:id', upload.single('file'),  ProducstController.update)
+   //routes.post('/favorites/:id', ProducstController.favorite)
+   //routes.delete('/favorites/:id', ProducstController.unfavorite)
 
    routes.post('/categories', upload.single('file'),  CategoryController.store)
    routes.get('/categories', CategoryController.index)
