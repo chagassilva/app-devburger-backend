@@ -6,16 +6,12 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon",
-    // "start": "node server.js",
     "start": "node src/server.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [],
-  "author": {
-    "name": "AppDevBurger",
-    "url": "https://github.com/chagassilva/"
-  },
+  "author": "AppDevBurger <https://github.com/chagassilva/>",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
